@@ -1,10 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
-function InputScreen() {
+function InputScreen({ onDataEntered }) {
   const [barcodeData, setBarcodeData] = useState("Sample Text");
   const [barCodeType, setBarCodeType] = useState("CODE128");
   const [showCaption, setShowCaption] = useState("Yes");
+
+  function submitHandler() {
+    onDataEntered({
+      text: barcodeData,
+      codetype: barCodeType,
+      caption: showCaption,
+    });
+  }
+
+  // const handleDropdownChange = (event) => {
+  //   setBarCodeType(event.target.value);
+  // };
+
   return (
     <>
       <h2>Enter Barcode Details</h2>
@@ -19,14 +32,9 @@ function InputScreen() {
             placeholder="Enter barcode text"
           ></Form.Control>
         </Form.Group>
-        <Form.Group controlId="barcodetype" className="my-3">
+        {/* <Form.Group controlId="barcodetype">
           <Form.Label>Select barcode type</Form.Label>
-          <Form.Select
-            aria-label="Default select example"
-            onChange={(e) => {
-              setBarCodeType(e.target.value);
-            }}
-          >
+          <Form.Select value={barCodeType} onChange={handleDropdownChange}>
             <option value="CODE128">CODE128</option>
             <option value="CODE39">CODE39</option>
             <option value="EAN13">EAN13</option>
@@ -37,11 +45,11 @@ function InputScreen() {
             <option value="MSI">MSI</option>
             <option value="pharmacode">Pharmacode</option>
           </Form.Select>
-        </Form.Group>
-        <Form.Group controlId="barcodetype" className="my-3">
+        </Form.Group> */}
+        <Form.Group controlId="barcodetype">
           <Form.Label>Show Caption</Form.Label>
           {["radio"].map((type) => (
-            <div key={`inline-${type}`} className="mb-3">
+            <div key={`inline-${type}`}>
               <Form.Check
                 className="radio-inline"
                 label="yes"
@@ -69,8 +77,8 @@ function InputScreen() {
             </div>
           ))}
         </Form.Group>
-        <Button type="submit" variant="success" className="mt-2">
-          Register
+        <Button type="button" variant="success" onClick={submitHandler}>
+          Generate
         </Button>
       </Form>
     </>
