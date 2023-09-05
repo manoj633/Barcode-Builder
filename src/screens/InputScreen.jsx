@@ -49,34 +49,44 @@ function InputScreen({ onDataEntered }) {
         </Form.Group> */}
         <Form.Group controlId="barcodetype" className="barcodeCaption">
           <Form.Label className="title caption">Show Caption</Form.Label>
-          {["radio"].map((type) => (
-            <div key={`inline-${type}`}>
-              <Form.Check
-                className="radio-inline"
-                label="yes"
-                name="group1"
-                type={type}
-                id={`inline-${type}-1`}
+          <div className="radiogroup">
+            <div className="wrapper">
+              <input
+                className="state"
+                type="radio"
+                name="app"
+                id="a"
+                value="on"
                 onChange={(e) => {
                   if (e.target.value === "on") {
                     setShowCaption(true);
                   }
                 }}
               />
-              <Form.Check
-                className="radio-inline"
-                label="No"
-                name="group1"
-                type={type}
-                id={`inline-${type}-2`}
+              <label className="label" htmlFor="a">
+                <div className="indicator"></div>
+                <span className="text">Yes</span>
+              </label>
+            </div>
+            <div className="wrapper">
+              <input
+                className="state"
+                type="radio"
+                name="app"
+                id="b"
+                value="off"
                 onChange={(e) => {
-                  if (e.target.value === "on") {
+                  if (e.target.value === "off") {
                     setShowCaption(false);
                   }
                 }}
               />
+              <label className="label" htmlFor="b">
+                <div className="indicator"></div>
+                <span className="text">No</span>
+              </label>
             </div>
-          ))}
+          </div>
         </Form.Group>
         <Button
           type="button"

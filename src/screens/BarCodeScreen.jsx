@@ -1,7 +1,7 @@
 import { useBarcode } from "next-barcode";
 
 function BarCodeScreen(props) {
-  let text = props.barcodeData.text;
+  let text = props.barcodeData.text || "sample text";
   let type = props.barcodeData.codetype;
   let caption = props.barcodeData.caption;
   console.log(text, type, caption);
