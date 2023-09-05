@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import "./InputScreen.css";
 
 function InputScreen({ onDataEntered }) {
   const [barcodeData, setBarcodeData] = useState("Sample Text");
@@ -20,12 +21,12 @@ function InputScreen({ onDataEntered }) {
 
   return (
     <>
-      <h2>Enter Barcode Details</h2>
+      <h2 className="title">Enter Barcode Details</h2>
       <Form>
-        <Form.Group controlId="barcodedata" className="my-3">
-          <Form.Label>Enter barcode data</Form.Label>
+        <Form.Group controlId="barcodedata">
           <Form.Control
             type="text"
+            className="barcodeInput"
             onChange={(e) => {
               setBarcodeData(e.target.value);
             }}
@@ -46,8 +47,8 @@ function InputScreen({ onDataEntered }) {
             <option value="pharmacode">Pharmacode</option>
           </Form.Select>
         </Form.Group> */}
-        <Form.Group controlId="barcodetype">
-          <Form.Label>Show Caption</Form.Label>
+        <Form.Group controlId="barcodetype" className="barcodeCaption">
+          <Form.Label className="title caption">Show Caption</Form.Label>
           {["radio"].map((type) => (
             <div key={`inline-${type}`}>
               <Form.Check
@@ -77,7 +78,12 @@ function InputScreen({ onDataEntered }) {
             </div>
           ))}
         </Form.Group>
-        <Button type="button" variant="success" onClick={submitHandler}>
+        <Button
+          type="button"
+          variant="success"
+          onClick={submitHandler}
+          className="button-confirm"
+        >
           Generate
         </Button>
       </Form>

@@ -10,7 +10,7 @@ function BarCodeScreen(props) {
     options: {
       format: type,
       displayValue: caption,
-      background: "#ffff00",
+      background: "#ffffff",
     },
   });
 
